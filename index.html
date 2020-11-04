@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <title>똘망이</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
 .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;
-  grid-gap: 10px;
+  grid-gap: 5%;
   background-color: #2196F3;
-  padding: 100px;
+  padding: 5%;
+  height: auto;
 }
 
 .grid-container > div {
   background-color: rgba(255, 255, 255, 0.8);
   text-align: center;
-  /* padding: 20px 0; */
-  font-size: 100px;
+  padding: 20px 0;
+  font-size:10%;
 }
 
 .btn {
@@ -23,8 +26,8 @@
   border: none;
   /* background-color: #4CAF50; */
   background-color: yellowgreen;
-  padding: 14px 28px;
-  font-size: 250px;
+  /* padding: 14px 28px; */
+  font-size: 15rem;
   cursor: pointer;
   text-align: center;
 }
@@ -32,22 +35,22 @@
 .btn-active
 {
     background-color: orange;
-    font-size: 200px
+    font-size: 10rem;
 }
 
 .subtitle
 {
-    font-size: 200px;
+    font-size: 15rem;
 }
 
 .btn
 {
-    height: 300px;
+    height: 20rem;
 }
 
 body
 {
-    padding: 100px;
+    padding: 20rem;
 }
 </style>
 </head>
@@ -69,10 +72,12 @@ body
     var currentButton;
     var buttons = document.querySelector(".grid-container");
     var button_act = document.querySelector("btn-active");
-
+    var sound;
+        
     function Runnable()
     {
         buttons.addEventListener('click', clickHandler);
+        var time = setInterval("init()", 3000);
     }
 
     function clickHandler(e)
@@ -80,27 +85,64 @@ body
         if(currentButton)
         {
             currentButton.classList.remove('btn-active');
+            // var audio = new Audio();
+            // audio.pause();
         }
         e.target.classList.add('btn-active');
         currentButton = e.target;
         // console.log(currentButton);
-        init();
+        
         switch(currentButton.innerText)
         {
-            case '1': currentButton.innerText = "일"; break;
-            case '2': currentButton.innerText = "이"; break;
-            case '3': currentButton.innerText = "삼"; break;
-            case '4': currentButton.innerText = "사"; break;
-            case '5': currentButton.innerText = "오"; break;
-            case '6': currentButton.innerText = "육"; break;
-            case '7': currentButton.innerText = "칠"; break;
-            case '8': currentButton.innerText = "팔"; break;
-            case '9': currentButton.innerText = "일"; break;
+            case '1': 
+                currentButton.innerText = "일";
+                sound = './sound/one.mp3'
+            break;
+            case '2': 
+                currentButton.innerText = "이"; 
+                sound = './sound/two.mp3'
+            break;
+            case '3':
+                currentButton.innerText = "삼"; 
+                sound = './sound/three.mp3'
+            break;
+            case '4': 
+                currentButton.innerText = "사"; 
+                sound = './sound/four.mp3'
+            break;
+            case '5': 
+                currentButton.innerText = "오"; 
+                sound = './sound/five.mp3'
+            break;
+            case '6': 
+                currentButton.innerText = "육"; 
+                sound = './sound/six.mp3'
+            break;
+            case '7': 
+                currentButton.innerText = "칠"; 
+                sound = './sound/seven.mp3'
+            break;
+            case '8': 
+                currentButton.innerText = "팔"; 
+                sound = './sound/eight.mp3'
+            break;
+            case '9': 
+                currentButton.innerText = "구"; 
+                sound = './sound/nine.mp3'
+            break;
         }
+        var audio = new Audio(sound);
+        audio.play()
     }
 
     function init()
     {
+        // console.log(currentButton);
+        
+        if(currentButton)
+        {
+            currentButton.classList.remove('btn-active');
+        }
         document.getElementById('btn1').innerText = "1";
         document.getElementById('btn2').innerText = "2";
         document.getElementById('btn3').innerText = "3";
@@ -110,6 +152,7 @@ body
         document.getElementById('btn7').innerText = "7";
         document.getElementById('btn8').innerText = "8";
         document.getElementById('btn9').innerText = "9";
+        sound = '';
     }
 
     Runnable();
