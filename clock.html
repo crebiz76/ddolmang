@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>똘망이 시계놀이</title>
+    <meta name="viewport" content="
+    width=device-width,
+    user-scalable=no,
+    initial-scale=1.0,
+    minimum-scale=1.0,
+    maximum-scale=1.0">
+<style type="text/css">
+
+.container{
+    width: 280px;
+    height: 280px;
+
+    border: 8px solid black;
+    border-radius:50%;
+
+    margin: 60px auto;
+    position: relative;
+
+    background-image: linear-gradient(30deg, red, orange 80%, white);
+}
+
+.number{
+    position:absolute;
+    z-index:1;
+    font-size:26px;
+    color: black;
+}
+
+#num12{
+    right:0;
+    left:0;
+    top:0;
+    text-align:center;
+}
+
+#num6{
+    right:0;
+    left:0;
+    bottom:0;
+    text-align:center;
+}
+
+#num3{
+    top:0;
+    bottom:0;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    right:5px;
+}
+
+#num9{
+    top:0;
+    bottom:0;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    left:5px;
+}
+
+#num1{
+    top: calc(140px - 120px);
+    right: calc(140px - 70px);
+}
+
+#num11{
+    top: calc(140px - 120px);
+    left: calc(140px - 70px);
+}
+
+#num2{
+    top: calc(140px - 75px);
+    right: calc(140px - 120px);
+}
+
+#num10{
+    top: calc(140px - 75px);
+    left: calc(140px - 120px);
+}
+
+#num4{
+    bottom: calc(140px - 80px);
+    right: calc(140px - 120px);
+}
+
+#num8{
+    bottom: calc(140px - 80px);
+    left: calc(140px - 120px);
+}
+
+#num5{
+    bottom: calc(140px - 120px);
+    right: calc(140px - 70px);
+}
+
+#num7{
+    bottom: calc(140px - 120px);
+    left: calc(140px - 70px);
+}
+
+#origin{
+    position:absolute;
+    border:1px solid black;
+    width:14px;
+    height:14px;
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    background:black;
+    margin:auto;
+    border-radius:50%;
+    z-index:999;
+}
+
+#second{
+    position:absolute;
+    height:100px;
+    width:4px;
+    background:red;
+    left:0;
+    right:0;
+    margin:auto;
+    bottom:140px;
+    transform:rotate(0deg);
+    transform-origin:center 100%;
+}
+
+#minute{
+    position:absolute;
+    height: 90px;
+    width:8px;
+    background:blue;
+    left:0;
+    right:0;
+    margin:auto;
+    bottom:140px;
+    transform:rotate(0deg);
+    transform-origin:center 100%;
+}
+
+#hour{
+    position:absolute;
+    height: 70px;
+    width:10px;
+    background:black;
+    left:0;
+    right:0;
+    margin:auto;
+    bottom:140px;
+    transform:rotate(0deg);
+    transform-origin:center 100%;
+}
+
+#brand{
+    position:absolute;
+    left:0;
+    right:0;
+    text-align:center;
+    margin-top:60px;
+}
+
+.btn{
+    width: 200px;
+    height: 200px;
+    font-size:50px;
+}
+
+.button{
+    position: absolute;
+    top:500px;
+    /* display:flex;
+    align-items:center;
+    justify-content:center; */
+    display:block;
+    align-items:center;
+    justify-content:center;
+}
+
+</style>
+</head>
+<body>
+    <h1 class="subtitle">시계 놀이</h1>
+    <div class = "button"><button class="btn" id='btn1'>뻐꾸기</button></div>
+    <div class = "container">
+        <div id="brand">똘망이 시계</div>
+        <div class="number" id="num1">1</div>
+        <div class="number" id="num2">2</div>
+        <div class="number" id="num3">3</div>
+        <div class="number" id="num4">4</div>
+        <div class="number" id="num5">5</div>
+        <div class="number" id="num6">6</div>
+        <div class="number" id="num7">7</div>
+        <div class="number" id="num8">8</div>
+        <div class="number" id="num9">9</div>
+        <div class="number" id="num10">10</div>
+        <div class="number" id="num11">11</div>
+        <div class="number" id="num12">12</div>
+
+        <div id="origin"></div>
+        <div id="hour"></div>
+        <div id="minute"></div>
+        <div id="second"></div>
+    </div>
+
+<script type="text/javascript">
+    window.addEventListener("load", function(){
+        clockRun();
+    });
+
+    var buttons = document.querySelector(".btn");
+    var sound = './sound/clock_bird.mp3';
+    var audio = new Audio(sound);
+    var count = 0;
+
+    buttons.addEventListener("click", clickHandler);
+    
+    function clickHandler(){
+        count++;
+        if(count % 2 === 1)
+        {
+            audio.play();
+        }
+        else
+        {
+            audio.pause();
+        }        
+    }
+
+    function clockRun(){
+        var d = new Date();
+
+        var s = d.getSeconds();
+        var s_angle = s * 6;
+        var s_angle_value = "rotate("+ s_angle +"deg)";
+        document.getElementById("second").style.transform = s_angle_value;
+
+        var m = d.getMinutes();
+        var m_angle = m*6;
+        var m_angle_value = "rotate("+m_angle+"deg)";
+        document.getElementById("minute").style.transform = m_angle_value;
+
+        var h = d.getHours();
+        h = h % 12;
+        var h_angle = h*30 + 0.5*m;
+        var h_angle_value = "rotate("+h_angle+"deg)";
+        document.getElementById("hour").style.transform = h_angle_value;
+
+        setTimeout(clockRun, 1000);
+    };
+</script>
+</body>
+</html>

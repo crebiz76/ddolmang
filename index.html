@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>똘망이</title>
+    <title>똘망이 놀이터</title>
     <meta name="viewport" content="
     width=device-width,
     user-scalable=no,
@@ -11,11 +11,11 @@
 <style>
 .grid-container {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto;
   grid-gap: 1%;
   background-color: #2196F3;
   padding: 3%;
-  height: auto;
+  height: 200px;
 }
 
 .grid-container > div {
@@ -61,234 +61,13 @@ body
 </head>
 <body>
 
-<h1 class="subtitle">숫자 놀이</h1>
+<h1 class="subtitle">도현이 놀이터</h1>
 <div class="grid-container">
-    <div><button class="btn" id='btn1'>1</button></div>
-    <div><button class="btn" id='btn2'>2</button></div>
-    <div><button class="btn" id='btn3'>3</button></div>
-    <div><button class="btn" id='btn4'>4</button></div>
-    <div><button class="btn" id='btn5'>5</button></div>
-    <div><button class="btn" id='btn6'>6</button></div>
-    <div><button class="btn" id='btn7'>7</button></div>
-    <div><button class="btn" id='btn8'>9</button></div>
-    <div><button class="btn" id='btn9'>8</button></div>
+    <div><button class="btn" id='btn1' onclick="location.href='./number.html'">숫자 놀이</button></div>
+    <div><button class="btn" id='btn2' onclick="location.href='./clock.html'">시계 놀이</button></div>
 </div>
 <script>
-    var currentButton;
-    var buttons = document.querySelector(".grid-container");
-    var button_act = document.querySelector("btn-active");
-    var sound;
-        
-    function Runnable()
-    {
-        buttons.addEventListener('click', clickHandler);
-        var time = setInterval("init()", 3000);
-    }
-
-    function clickHandler(e)
-    {
-        if(currentButton)
-        {
-            currentButton.classList.remove('btn-active');
-            // var audio = new Audio();
-            // audio.pause();
-        }
-        e.target.classList.add('btn-active');
-        currentButton = e.target;
-        // console.log(currentButton);
-        
-        switch(currentButton.innerText)
-        {
-            case '1': 
-                currentButton.innerText = "일";
-                sound = './sound/one.mp3'
-            break;
-            case '2': 
-                currentButton.innerText = "이"; 
-                sound = './sound/two.mp3'
-            break;
-            case '3':
-                currentButton.innerText = "삼"; 
-                sound = './sound/three.mp3'
-            break;
-            case '4': 
-                currentButton.innerText = "사"; 
-                sound = './sound/four.mp3'
-            break;
-            case '5': 
-                currentButton.innerText = "오"; 
-                sound = './sound/five.mp3'
-            break;
-            case '6': 
-                currentButton.innerText = "육"; 
-                sound = './sound/six.mp3'
-            break;
-            case '7': 
-                currentButton.innerText = "칠"; 
-                sound = './sound/seven.mp3'
-            break;
-            case '8': 
-                currentButton.innerText = "팔"; 
-                sound = './sound/eight.mp3'
-            break;
-            case '9': 
-                currentButton.innerText = "구"; 
-                sound = './sound/nine.mp3'
-            break;
-        }
-        var audio = new Audio(sound);
-        audio.play()
-    }
-
-    function init()
-    {
-        // console.log(currentButton);
-        
-        if(currentButton)
-        {
-            currentButton.classList.remove('btn-active');
-        }
-        document.getElementById('btn1').innerText = "1";
-        document.getElementById('btn2').innerText = "2";
-        document.getElementById('btn3').innerText = "3";
-        document.getElementById('btn4').innerText = "4";
-        document.getElementById('btn5').innerText = "5";
-        document.getElementById('btn6').innerText = "6";
-        document.getElementById('btn7').innerText = "7";
-        document.getElementById('btn8').innerText = "8";
-        document.getElementById('btn9').innerText = "9";
-        sound = '';
-    }
-
-    Runnable();
-    // var btnName = null;
-    // document.getElementById('btn1').onclick = function() {func_btn1();}
-    // document.getElementById('btn2').onclick = function() {func_btn2();}
-    // document.getElementById('btn3').onclick = function() {func_btn3();}
-    // document.getElementById('btn4').onclick = function() {func_btn4();}
-    // document.getElementById('btn5').onclick = function() {func_btn5();}
-    // document.getElementById('btn6').onclick = function() {func_btn6();}
-    // document.getElementById('btn7').onclick = function() {func_btn7();}
-    // document.getElementById('btn8').onclick = function() {func_btn8();}
-    // document.getElementById('btn9').onclick = function() {func_btn9();}
     
-    // function func_btn1()
-    // {
-    //     btnName = document.getElementById('btn1').innerText;
-    //     if(btnName === "1")
-    //     {
-    //         btnName = "일";
-    //     }
-    //     else
-    //     {
-    //         btnName = "1";
-    //     }
-    //     document.getElementById('btn1').innerText = btnName;
-    // }
-    // function func_btn2()
-    // {
-    //     btnName = document.getElementById('btn2').innerText;
-    //     if(btnName === "2")
-    //     {
-    //         btnName = "이";
-    //     }
-    //     else
-    //     {
-    //         btnName = "2";
-    //     }
-    //     document.getElementById('btn2').innerText = btnName;
-    // }
-    // function func_btn3()
-    // {
-    //     btnName = document.getElementById('btn3').innerText;
-    //     if(btnName === "3")
-    //     {
-    //         btnName = "삼";
-    //     }
-    //     else
-    //     {
-    //         btnName = "3";
-    //     }
-    //     document.getElementById('btn3').innerText = btnName;
-    // }    
-    // function func_btn4()
-    // {
-    //     btnName = document.getElementById('btn4').innerText;
-    //     if(btnName === "4")
-    //     {
-    //         btnName = "사";
-    //     }
-    //     else
-    //     {
-    //         btnName = "4";
-    //     }
-    //     document.getElementById('btn4').innerText = btnName;
-    // }
-    // function func_btn5()
-    // {
-    //     btnName = document.getElementById('btn5').innerText;
-    //     if(btnName === "5")
-    //     {
-    //         btnName = "오";
-    //     }
-    //     else
-    //     {
-    //         btnName = "5";
-    //     }
-    //     document.getElementById('btn5').innerText = btnName;
-    // }
-    // function func_btn6()
-    // {
-    //     btnName = document.getElementById('btn6').innerText;
-    //     if(btnName === "6")
-    //     {
-    //         btnName = "육";
-    //     }
-    //     else
-    //     {
-    //         btnName = "6";
-    //     }
-    //     document.getElementById('btn6').innerText = btnName;
-    // }
-    // function func_btn7()
-    // {
-    //     btnName = document.getElementById('btn7').innerText;
-    //     if(btnName === "7")
-    //     {
-    //         btnName = "칠";
-    //     }
-    //     else
-    //     {
-    //         btnName = "7";
-    //     }
-    //     document.getElementById('btn7').innerText = btnName;
-    // }
-    // function func_btn8()
-    // {
-    //     btnName = document.getElementById('btn8').innerText;
-    //     if(btnName === "8")
-    //     {
-    //         btnName = "팔";
-    //     }
-    //     else
-    //     {
-    //         btnName = "8";
-    //     }
-    //     document.getElementById('btn8').innerText = btnName;
-    // }
-    // function func_btn9()
-    // {
-    //     btnName = document.getElementById('btn9').innerText;
-    //     if(btnName === "9")
-    //     {
-    //         btnName = "구";
-    //     }
-    //     else
-    //     {
-    //         btnName = "9";
-    //     }
-    //     document.getElementById('btn9').innerText = btnName;
-    // }
 </script>
 </body>
 </html>
